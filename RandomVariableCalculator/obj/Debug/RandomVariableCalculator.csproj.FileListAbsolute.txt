@@ -1,0 +1,12 @@
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\bin\Debug\RandomVariableCalculator.exe.config
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\bin\Debug\RandomVariableCalculator.exe
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\bin\Debug\RandomVariableCalculator.pdb
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.csprojAssemblyReference.cache
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.MainWindow.resources
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.Properties.Resources.resources
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.RandomVariableWindow.resources
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.csproj.GenerateResource.cache
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.exe
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.pdb
+C:\Users\Josef YI\source\repos\RandomVariableCalculator\RandomVariableCalculator\obj\Debug\RandomVariableCalculator.NumberInputWindow.resources

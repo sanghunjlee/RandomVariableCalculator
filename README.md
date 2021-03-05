@@ -12,7 +12,7 @@ This program calculates the **Expected Value**, **Variance**, and **Probability*
 * Hyper-Geometric Random Variable
 
 ## What's Next
-- [x] (03.03.2021) Allow editting the pre-inputted values when clicking the RandomVariable button
+- [x] 03.03.2021: Allow editting the pre-inputted values when clicking the RandomVariable button
 - [ ] View members of the list in NumberInputWindow when double clicking the label
 - [ ] Disable NumberInputWindow.okButton if DataType is List and the list is Empty
 - [ ] Add a way to display mathematical formula using LaTeX

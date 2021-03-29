@@ -30,7 +30,7 @@ namespace RandomVariableCalculator
                 }
                 else
                 {
-                    DisplayTextList.AddRange(randomVariable.Value.Split().Select(x => char.Parse(x)));
+                    DisplayTextList.AddRange(randomVariable.Value.ToCharArray());
                 }
             }
             

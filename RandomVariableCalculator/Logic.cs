@@ -34,6 +34,7 @@ namespace RandomVariableCalculator
         public static ProbabilityResult UniformDiscreteRV(List<string> X)
         {
             List<float> xList = X.Select(x => float.Parse(x)).ToList();
+            xList.Sort();
             int n = xList.Count;
             float p = (float)1 / n;
             float expectedValue = xList.Sum() / n;
@@ -41,7 +42,10 @@ namespace RandomVariableCalculator
             var pmfTable = new Dictionary<string, string>();
             foreach (float x in xList)
             {
-                pmfTable.Add(x.ToString(), p.ToString());
+                if (!pmfTable.ContainsKey(x.ToString()))
+                {
+                    pmfTable.Add(x.ToString(), p.ToString());
+                }
             }
             return new ProbabilityResult(pmfTable, expectedValue.ToString(), variance.ToString());
         }
@@ -80,15 +84,19 @@ namespace RandomVariableCalculator
                 double.TryParse(w, out double timePeriod))
             {
                 List<uint> kList = k.Select(x => UInt32.Parse(x)).ToList();
+                kList.Sort();
                 double expectedValue = averageSuccess * timePeriod;
                 double variance = expectedValue;
                 var pmfTable = new Dictionary<string, string>();
                 foreach (uint numberSuccess in kList)
                 {
-                    double probability = Math.Exp(-expectedValue);
-                    probability *= Math.Pow(expectedValue, numberSuccess);
-                    probability /= Factorial((int)numberSuccess);
-                    pmfTable.Add(numberSuccess.ToString(), probability.ToString());
+                    if (!pmfTable.ContainsKey(numberSuccess.ToString()))
+                    {
+                        double probability = Math.Exp(-expectedValue);
+                        probability *= Math.Pow(expectedValue, numberSuccess);
+                        probability /= Factorial((int)numberSuccess);
+                        pmfTable.Add(numberSuccess.ToString(), probability.ToString());
+                    }
                 }
                 return new ProbabilityResult(pmfTable, expectedValue.ToString(), variance.ToString());
             }

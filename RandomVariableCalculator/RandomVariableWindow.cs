@@ -28,11 +28,11 @@ namespace RandomVariableCalculator
         private void UpdateContents()
         {
             this.titleLabel.Text = this.Title;
-            foreach (Label l in Utility.GetDescriptionLabelList(Type))
-            {
-                l.Width = displayFlowLayout.Width - displayFlowLayout.Margin.Left - displayFlowLayout.Margin.Right;
-                displayFlowLayout.Controls.Add(l);
-            }
+            Label descriptionLabel = Utility.GetDescriptionLabel(Type);
+            descriptionLabel.Width = displayFlowLayout.Width - displayFlowLayout.Margin.Left - displayFlowLayout.Margin.Right;
+            descriptionLabel.Height = displayFlowLayout.Height - displayFlowLayout.Margin.Top - displayFlowLayout.Margin.Bottom;
+
+            displayFlowLayout.Controls.Add(descriptionLabel);
             for (int i = 0; i < RandomVariableList.Count; i++)
             {
                 int index = i;

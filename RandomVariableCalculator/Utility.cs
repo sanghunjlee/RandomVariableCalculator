@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ComponentModel;
+using RandomVariableCalculator.Properties;
 
 namespace RandomVariableCalculator
 {
@@ -107,47 +108,35 @@ namespace RandomVariableCalculator
     }
     public static class Utility
     {
-        public static List<Label> GetDescriptionLabelList(RandomVariableType type)
+        public static Label GetDescriptionLabel(RandomVariableType type)
         {
-            var descriptionLabels = new List<Label>();
-            Func<string, Label> newLabel = x => new Label() { Text = x, };
+            Label descriptionLabel = new Label();
+            Image labelImage = null;
             switch (type)
             {
                 case RandomVariableType.Uniform:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(x) = \\frac{1}{n}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = \\frac{\\sum x_i}{n}$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = \\frac{\\sum x_i^2}{n} - \\left(\\frac{\\sum x_i}{n}\\right)^2$"));
+                    labelImage = Resources.uniformRVTex;
                     break;
                 case RandomVariableType.Binomial:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(r) = _{n}C_{r} p^r (1-p)^{n-r}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = np$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = np(1-p)$"));
+                    labelImage = Resources.binomialRVTex;
                     break;
                 case RandomVariableType.Poisson:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(X(w)=k) = e^{-\\lambda w}\\frac{(\\lambda w)^k}{k!}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = \\lambda w$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = \\lambda w$"));
+                    labelImage = Resources.poissonRVTex;
                     break;
                 case RandomVariableType.Geometric:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(n) = p(1-p)^{n-1}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = \\frac{1}{p}$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = \\frac{1-p}{p^2}$"));
+                    labelImage = Resources.geometricRVTex;
                     break;
                 case RandomVariableType.NegativeBinomial:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(n) = {}_{n-1}C_{r-1} p^r (1-p)^{n-r}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = \\frac{r}{p}$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = \\frac{r(1-p)}{p^2}$"));
+                    labelImage = Resources.negBinomialRVTex;
                     break;
                 case RandomVariableType.HyperGeometric:
-                    descriptionLabels.Add(newLabel("The probability mass function: $p(X=k) = \\frac{{}_nC_k {}_{N-n}C_{r-k}}{{}_NC_r}$"));
-                    descriptionLabels.Add(newLabel("The expected value: $E(X) = \\frac{rn}{N}$"));
-                    descriptionLabels.Add(newLabel("The variance: $Var(X) = \\frac{rn}{N}\\cdot\\frac{N-r}{N}\\cdot\\frac{N-n}{N-1}$"));
-                    break;
-                default:
-                    descriptionLabels.Add(newLabel(""));
+                    labelImage = Resources.hyperGeoRVTex;
                     break;
             }
-            return descriptionLabels;
+            double scale = 0.8;
+            Size scaledSize = new Size((int)(labelImage.Width * scale), (int)(labelImage.Height * scale));
+            descriptionLabel.Image = (Image)(new Bitmap(labelImage, scaledSize));
+            return descriptionLabel;
 
         }
         public static List<RandomVariable> GetVariableList(RandomVariableType type)

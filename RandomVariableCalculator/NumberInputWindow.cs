@@ -13,20 +13,22 @@ namespace RandomVariableCalculator
     public partial class NumberInputWindow : Form
     {
         public List<char> DisplayTextList { get; private set; }
-        public List<string> ListMemeberCollection { get; private set; }
+        public List<string> ListMemberCollection { get; private set; }
         private bool IsNegative;
+        private bool IsList;
         private readonly DataType type;
-        public NumberInputWindow(RandomVariable randomVariable)
+        public NumberInputWindow(Variable randomVariable)
         {
             this.DisplayTextList = new List<char>();
-            this.ListMemeberCollection = new List<string>();
+            this.ListMemberCollection = new List<string>();
             this.IsNegative = false;
+            this.IsList = true;
             this.type = randomVariable.Type;
             if (randomVariable.Value != "")
             {
                 if (randomVariable.Type == DataType.List)
                 {
-                    ListMemeberCollection.AddRange(randomVariable.Value.Replace(", ", ",").Split(','));
+                    ListMemberCollection.AddRange(randomVariable.Value.Replace(", ", ",").Split(','));
                 }
                 else
                 {
@@ -40,6 +42,7 @@ namespace RandomVariableCalculator
 
             if (this.type != DataType.List)
             {
+                IsList = false;
                 this.addButton.Dispose();
                 this.listLabel.Dispose();
                 this.listMemberLabel.Dispose();
@@ -47,8 +50,8 @@ namespace RandomVariableCalculator
                 this.listClearButton.Dispose();
                 this.flowLayoutPanel1.Dispose();
                 this.displayLabel.Height += 24;
-                this.displayLabel.Location = new Point(
-                    this.displayLabel.Location.X, this.displayLabel.Location.Y - 24);
+                this.displayLabel.Location = new Point(this.displayLabel.Location.X, 
+                                                       this.displayLabel.Location.Y - 24);
 
             }
             if (this.type == DataType.Integer)
@@ -177,27 +180,42 @@ namespace RandomVariableCalculator
         }
         private void AddButtonClick(object sender, EventArgs e)
         {
-            this.ListMemeberCollection.Add(String.Join("", this.DisplayTextList));
-            this.DisplayTextList.Clear();
-            this.UpdateDisplay();
+            string displayText = String.Join("", this.DisplayTextList);
+            if (!String.IsNullOrEmpty(displayText))
+            {
+                this.ListMemberCollection.Add(displayText);
+                this.DisplayTextList.Clear();
+                this.UpdateDisplay();
+            }
         }
         private void ListDeleteButtonClick(object sender, EventArgs e)
         {
-            if (this.ListMemeberCollection.Count > 0)
+            if (this.ListMemberCollection.Count > 0)
             {
-                this.ListMemeberCollection.RemoveAt(this.ListMemeberCollection.Count - 1);
+                this.ListMemberCollection.RemoveAt(this.ListMemberCollection.Count - 1);
                 this.UpdateDisplay();
             }
         }
         private void ListClearButtonClick(object sender, EventArgs e)
         {
-            this.ListMemeberCollection.Clear();
+            this.ListMemberCollection.Clear();
             this.UpdateDisplay();
         }
         private void UpdateDisplay()
         {
             this.displayLabel.Text = String.Join("", this.DisplayTextList);
-            this.listMemberLabel.Text = String.Join(", ", this.ListMemeberCollection);
+            this.listMemberLabel.Text = String.Join(", ", this.ListMemberCollection);
+            if (this.IsList)
+            {
+                if (this.ListMemberCollection.Count <= 0 && this.okButton.Enabled)
+                {
+                    this.okButton.Enabled = false;
+                }
+                else if (this.ListMemberCollection.Count > 0 && !this.okButton.Enabled)
+                {
+                    this.okButton.Enabled = true;
+                }    
+            }
         }
     }
 }

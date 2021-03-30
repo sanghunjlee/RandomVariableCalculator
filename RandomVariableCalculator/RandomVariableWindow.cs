@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RandomVariableCalculator.Properties;
 
 namespace RandomVariableCalculator
 {
     public partial class RandomVariableWindow : Form
     {
-        private List<RandomVariable> RandomVariableList;
+        private List<Variable> RandomVariableList;
         private readonly RandomVariableType Type;
         private readonly string Title;
 
@@ -28,7 +29,7 @@ namespace RandomVariableCalculator
         private void UpdateContents()
         {
             this.titleLabel.Text = this.Title;
-            Label descriptionLabel = Utility.GetDescriptionLabel(Type);
+            Label descriptionLabel = GetDescriptionLabel(Type);
             descriptionLabel.Width = displayFlowLayout.Width - displayFlowLayout.Margin.Left - displayFlowLayout.Margin.Right;
             descriptionLabel.Height = displayFlowLayout.Height - displayFlowLayout.Margin.Top - displayFlowLayout.Margin.Bottom;
 
@@ -36,7 +37,7 @@ namespace RandomVariableCalculator
             for (int i = 0; i < RandomVariableList.Count; i++)
             {
                 int index = i;
-                RandomVariable rv = RandomVariableList[i];
+                Variable rv = RandomVariableList[i];
                 // buttonText setup needs to be refined to consider the case when the preset is a list
                 string buttonText = rv.Value == "" ? rv.Name : String.Concat(rv.Name, " = ", rv.Value); 
                 var variableButton = new Button()
@@ -60,7 +61,7 @@ namespace RandomVariableCalculator
             {
                 if (this.RandomVariableList[index].Type == DataType.List)
                 {
-                    value = String.Join(", ", niWindow.ListMemeberCollection);
+                    value = String.Join(", ", niWindow.ListMemberCollection);
                     buttonText = (value == "") ? variableName : String.Concat(variableName, " = { ", value, " }");
                 }
                 else
@@ -74,6 +75,7 @@ namespace RandomVariableCalculator
                 this.Enabled = true;
             }
         }
+        
         private void CalcButton_Click(object sender, EventArgs e)
         {
             List<string> xList;
@@ -131,6 +133,37 @@ namespace RandomVariableCalculator
         {
 
         }
+        private static Label GetDescriptionLabel(RandomVariableType type)
+        {
+            Label descriptionLabel = new Label();
+            Image labelImage = null;
+            switch (type)
+            {
+                case RandomVariableType.Uniform:
+                    labelImage = Resources.uniformRVTex;
+                    break;
+                case RandomVariableType.Binomial:
+                    labelImage = Resources.binomialRVTex;
+                    break;
+                case RandomVariableType.Poisson:
+                    labelImage = Resources.poissonRVTex;
+                    break;
+                case RandomVariableType.Geometric:
+                    labelImage = Resources.geometricRVTex;
+                    break;
+                case RandomVariableType.NegativeBinomial:
+                    labelImage = Resources.negBinomialRVTex;
+                    break;
+                case RandomVariableType.HyperGeometric:
+                    labelImage = Resources.hyperGeoRVTex;
+                    break;
+            }
+            double scale = 0.8;
+            Size scaledSize = new Size((int)(labelImage.Width * scale), (int)(labelImage.Height * scale));
+            descriptionLabel.Image = (Image)(new Bitmap(labelImage, scaledSize));
+            return descriptionLabel;
+        }
+
 
     }
 }

@@ -8,21 +8,7 @@ using System.ComponentModel;
 
 namespace RandomVariableCalculator
 {
-    public enum RandomVariableType
-    {
-        [Description("Unifrom Random Variable")]
-        Uniform,
-        [Description("Binomial Random Variable")]
-        Binomial,
-        [Description("Poisson Random Variable")]
-        Poisson,
-        [Description("Geometric Random Variable")]
-        Geometric,
-        [Description("Negative Binomial Random Variable")]
-        NegativeBinomial,
-        [Description("Hyper-Geometric Random Variable")]
-        HyperGeometric
-    }
+    
 
     
     public class ProbabilityResult
@@ -86,49 +72,6 @@ namespace RandomVariableCalculator
     }
     public static class Utility
     {
-        
-        public static List<Variable> GetVariableList(RandomVariableType type)
-        {
-            switch (type)
-            {
-                case RandomVariableType.Uniform:
-                    return new List<Variable> { 
-                        new Variable("X", DataType.List) 
-                    };
-                case RandomVariableType.Binomial:
-                    return new List<Variable> { 
-                        new Variable("r", DataType.List),
-                        new Variable("n", DataType.Integer),
-                        new Variable("p")
-                    };
-                case RandomVariableType.Poisson:
-                    return new List<Variable> {
-                        new Variable("k", DataType.List),
-                        new Variable(MathSymbol.Lambda),
-                        new Variable("w", presetValue: "1")
-                    };
-                case RandomVariableType.Geometric:
-                    return new List<Variable> {
-                        new Variable("n", DataType.Integer),
-                        new Variable("p")
-                    };
-                case RandomVariableType.NegativeBinomial:
-                    return new List<Variable> {
-                        new Variable("n", DataType.Integer),
-                        new Variable("p"),
-                        new Variable("r", DataType.Integer)
-                    };
-                case RandomVariableType.HyperGeometric:
-                    return new List<Variable> {
-                        new Variable("N", DataType.Integer),
-                        new Variable("n", DataType.Integer),
-                        new Variable("r", DataType.Integer),
-                        new Variable("k", DataType.Integer)
-                    };
-                default:
-                    return new List<Variable> { };
-            }
-        }
         public static void DisplayResult(
             string randomVariableName, ProbabilityResult result)
         {

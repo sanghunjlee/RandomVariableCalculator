@@ -22,11 +22,11 @@ namespace RandomVariableCalculator
             this.DisplayTextList = new List<char>();
             this.ListMemberCollection = new List<string>();
             this.IsNegative = false;
-            this.IsList = true;
             this.type = randomVariable.Type;
+            this.IsList = randomVariable.IsList;
             if (randomVariable.Value != "")
             {
-                if (randomVariable.Type == DataType.List)
+                if (randomVariable.IsList)
                 {
                     ListMemberCollection.AddRange(randomVariable.Value.Replace(", ", ",").Split(','));
                 }
@@ -40,7 +40,7 @@ namespace RandomVariableCalculator
             UpdateDisplay();
             this.CenterToParent();
 
-            if (this.type != DataType.List)
+            if (!randomVariable.IsList)
             {
                 IsList = false;
                 this.addButton.Dispose();
@@ -91,7 +91,7 @@ namespace RandomVariableCalculator
             }
             else if (keyData == Keys.Enter || keyData == Keys.Return)
             {
-                if (this.type == DataType.List)
+                if (this.IsList)
                 {
                     this.AddButtonClick(null, EventArgs.Empty);
                 }

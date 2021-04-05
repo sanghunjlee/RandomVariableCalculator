@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -17,11 +16,11 @@ namespace RandomVariableCalculator
         private readonly RandomVariableType Type;
         private readonly string Title;
 
-        public RandomVariableWindow(RandomVariableType rvType)
+        public RandomVariableWindow(RandomVariable randomVariable)
         {
-            this.Type = rvType;
-            this.Title = Enum.GetName(typeof(RandomVariableType), Type);
-            RandomVariableList = Utility.GetVariableList(Type);
+            this.Type = randomVariable.Type;
+            this.Title = randomVariable.Name;
+            RandomVariableList = randomVariable.Argument;
             InitializeComponent();
             UpdateContents();
             this.CenterToParent();
@@ -59,7 +58,7 @@ namespace RandomVariableCalculator
             string value;
             if (niWindow.ShowDialog() == DialogResult.OK)
             {
-                if (this.RandomVariableList[index].Type == DataType.List)
+                if (this.RandomVariableList[index].IsList)
                 {
                     value = String.Join(", ", niWindow.ListMemberCollection);
                     buttonText = (value == "") ? variableName : String.Concat(variableName, " = { ", value, " }");

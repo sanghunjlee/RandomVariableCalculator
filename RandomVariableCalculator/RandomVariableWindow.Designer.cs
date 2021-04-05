@@ -61,15 +61,15 @@ namespace RandomVariableCalculator
             this.splitContainer1.Panel2.Controls.Add(this.CalcButton);
             this.splitContainer1.Panel2.Controls.Add(this.buttonFlowLayout);
             this.splitContainer1.Size = new System.Drawing.Size(570, 288);
-            this.splitContainer1.SplitterDistance = 440;
+            this.splitContainer1.SplitterDistance = 374;
             this.splitContainer1.TabIndex = 1;
             // 
             // CancelButton
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(3, 252);
+            this.CancelButton.Location = new System.Drawing.Point(122, 252);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(119, 36);
+            this.CancelButton.Size = new System.Drawing.Size(70, 36);
             this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@ namespace RandomVariableCalculator
             // 
             // CalcButton
             // 
-            this.CalcButton.Location = new System.Drawing.Point(3, 197);
+            this.CalcButton.Location = new System.Drawing.Point(3, 252);
             this.CalcButton.Name = "CalcButton";
-            this.CalcButton.Size = new System.Drawing.Size(118, 49);
+            this.CalcButton.Size = new System.Drawing.Size(118, 36);
             this.CalcButton.TabIndex = 1;
             this.CalcButton.Text = "Calculate";
             this.CalcButton.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@ namespace RandomVariableCalculator
             // 
             this.buttonFlowLayout.Location = new System.Drawing.Point(3, 3);
             this.buttonFlowLayout.Name = "buttonFlowLayout";
-            this.buttonFlowLayout.Size = new System.Drawing.Size(119, 191);
+            this.buttonFlowLayout.Size = new System.Drawing.Size(186, 243);
             this.buttonFlowLayout.TabIndex = 0;
             // 
             // displayFlowLayout
@@ -98,7 +98,7 @@ namespace RandomVariableCalculator
             this.displayFlowLayout.Location = new System.Drawing.Point(23, 47);
             this.displayFlowLayout.Margin = new System.Windows.Forms.Padding(10);
             this.displayFlowLayout.Name = "displayFlowLayout";
-            this.displayFlowLayout.Size = new System.Drawing.Size(420, 268);
+            this.displayFlowLayout.Size = new System.Drawing.Size(354, 268);
             this.displayFlowLayout.TabIndex = 0;
             // 
             // RandomVariableWindow
@@ -120,6 +120,7 @@ namespace RandomVariableCalculator
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

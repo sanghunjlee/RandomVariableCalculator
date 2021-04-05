@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Variable.cs" />
+    <Compile Include="RandomVariable.cs" />
     <Compile Include="NumberInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -28,8 +28,9 @@ namespace RandomVariableCalculator
             if (sender is Button)
             {
                 this.Enabled = false;
-                if (Enum.TryParse(((Button) sender).Name, out RandomVariableType rv))
+                if (Enum.TryParse(((Button) sender).Name, out RandomVariableType rvType))
                 {
+                    var rv = new RandomVariable(rvType);
                     var rvWindow = new RandomVariableWindow(rv);
                     if (rvWindow.ShowDialog() != DialogResult.None)
                     {
